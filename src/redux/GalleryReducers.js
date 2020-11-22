@@ -19,6 +19,22 @@ export const GalleryReducers = (state = initState, action) => {
 			return {
 				error: action.payload,
 			};
+		case 'SEARCH_GALLERY_REQUEST':
+			return {
+				...state,
+				loading: true,
+			};
+		case 'SEARCH_GALLERY_SUCCESS':
+			return {
+				...state,
+				loading: false,
+				gallery: action.payload,
+			};
+		case 'SEARCH_GALLERY_FAILED':
+			return {
+				...state,
+				error: action.payload,
+			};
 		default:
 			return state;
 	}

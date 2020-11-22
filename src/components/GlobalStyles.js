@@ -19,10 +19,6 @@ const GlobalStyles = createGlobalStyle`
         margin: auto;
     }
 
-    a {
-        text-decoration: none;
-    }
-
     input {
         background-color: transparent;
         border: none;
@@ -30,10 +26,6 @@ const GlobalStyles = createGlobalStyle`
 
     input:focus {
         outline: none;
-    }
-
-    li {
-        list-style:none;
     }
 
     img {

@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { loadGalleryAction } from '../redux/GalleryActions';
+import Loader from './Loader';
+import Message from './Message';
 
 const Gallery = () => {
 	const dispatch = useDispatch();
 
-	const { gallery } = useSelector((state) => state.gallery);
+	const { gallery, loading, error } = useSelector((state) => state.gallery);
 
 	console.log(gallery);
 
@@ -15,19 +17,27 @@ const Gallery = () => {
 	}, [dispatch]);
 
 	return (
-		<GalleryStyle>
-			{gallery.map((c) => (
-				<div className="card" key={c.id}>
-					<img src={c.webformatURL} alt={c.id} />
-					<div className="card-info">
-						<h3>{c.user}</h3>
-						<span>
-							{c.likes} Likes . {c.downloads} downloads
-						</span>
-					</div>
-				</div>
-			))}
-		</GalleryStyle>
+		<>
+			{loading ? (
+				<Loader />
+			) : error ? (
+				<Message status="failed">{error}</Message>
+			) : (
+				<GalleryStyle>
+					{gallery.map((c) => (
+						<div className="card" key={c.id}>
+							<img src={c.webformatURL} alt={c.id} />
+							<div className="card-info">
+								<h3>{c.user}</h3>
+								<span>
+									{c.likes} Likes . {c.downloads} downloads
+								</span>
+							</div>
+						</div>
+					))}
+				</GalleryStyle>
+			)}
+		</>
 	);
 };
 
