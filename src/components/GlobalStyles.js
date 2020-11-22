@@ -11,6 +11,11 @@ const GlobalStyles = createGlobalStyle`
     body {
         width: 100%;
         font-family: 'Poppins', sans-serif;
+        transition: background 1s ease;
+        &.dark-mode {
+            background: rgb(0,0,0,0.85);
+            color: #fff !important;
+        }
     }
 
     .container {
